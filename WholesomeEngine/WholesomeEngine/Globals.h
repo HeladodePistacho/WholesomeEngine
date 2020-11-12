@@ -6,26 +6,31 @@
 #include <Windows.h>
 #include <sstream>
 
-inline std::stringstream out;
-
-template<typename T, typename... Params>
-void LOG(std::string str, T arg)
+namespace DEBUG
 {
-	if constexpr(std::is_null_pointer_v<T>)
-		out << str << std::endl;
-	else
-		out << str.substr(0, str.find_first_of('%')) << arg << std::endl;
+	inline std::stringstream out;
 
-	OutputDebugString(out.str().c_str());
-	out.clear();
-	out.str(std::string());
-}
+	template<typename T, typename... Params>
+	void LOG(std::string str, T arg)
+	{
+		if constexpr(std::is_null_pointer_v<T>)
+			out << str << std::endl;
+		else
+			out << str.substr(0, str.find_first_of('%')) << arg << std::endl;
 
-template<typename T, typename... Params>
-void LOG(std::string str, T arg, Params... args)
-{
-	out << str.substr(0, str.find_first_of('%')) << arg;
-	LOG(str.substr(str.find_first_of('%') + 1), args...);
+#if defined(_DEBUG)
+		OutputDebugString(out.str().c_str());
+#endif
+		out.clear();
+		out.str(std::string());
+	}
+
+	template<typename T, typename... Params>
+	void LOG(std::string str, T arg, Params... args)
+	{
+		out << str.substr(0, str.find_first_of('%')) << arg;
+		LOG(str.substr(str.find_first_of('%') + 1), args...);
+	}
 }
 
 #endif // !_GLOBALS_H_

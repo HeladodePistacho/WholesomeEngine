@@ -18,9 +18,8 @@ namespace DEBUG
 		else
 			out << str.substr(0, str.find_first_of('%')) << arg << std::endl;
 
-#if defined(_DEBUG)
 		OutputDebugString(out.str().c_str());
-#endif
+
 		out.clear();
 		out.str(std::string());
 	}
@@ -32,6 +31,13 @@ namespace DEBUG
 		LOG(str.substr(str.find_first_of('%') + 1), args...);
 	}
 }
+
+enum class ENGINE_STATUS
+{
+	FAIL,
+	SUCCESS,
+	FINISHED
+};
 
 #endif // !_GLOBALS_H_
 

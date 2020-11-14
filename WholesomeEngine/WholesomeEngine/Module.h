@@ -8,12 +8,12 @@ public:
 	Module();
 	virtual ~Module();
 
-	virtual ENGINE_STATUS Init()       {};
-	virtual ENGINE_STATUS Start()      {};
-	virtual ENGINE_STATUS PreUpdate()  {};
-	virtual ENGINE_STATUS Update()     {};
-	virtual ENGINE_STATUS PostUpdate() {};
-	virtual ENGINE_STATUS CleanUp()    {};
+	virtual ENGINE_STATUS Init()       { return ENGINE_STATUS::SUCCESS; };
+	virtual ENGINE_STATUS Start()      { return ENGINE_STATUS::SUCCESS; };
+	virtual ENGINE_STATUS PreUpdate()  { return ENGINE_STATUS::SUCCESS; };
+	virtual ENGINE_STATUS Update()     { return ENGINE_STATUS::SUCCESS; };
+	virtual ENGINE_STATUS PostUpdate() { return ENGINE_STATUS::SUCCESS; };
+	virtual ENGINE_STATUS CleanUp()    { return ENGINE_STATUS::SUCCESS; };
 };
 
 

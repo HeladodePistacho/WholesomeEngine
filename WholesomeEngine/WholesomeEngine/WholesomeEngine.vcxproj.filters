@@ -16,6 +16,12 @@
     <Filter Include="Archivos de origen\Utilities">
       <UniqueIdentifier>{ecafcbb5-21cb-42a1-a988-7d991cf8f881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Modules">
+      <UniqueIdentifier>{955ec59f-8285-4487-98f5-46860af5663e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Modules">
+      <UniqueIdentifier>{cb4faca5-6a12-4540-9c60-472a45018aa3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -25,6 +31,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Module.cpp">
+      <Filter>Archivos de origen\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,13 +41,16 @@
     <ClInclude Include="Engine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Module.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Archivos de origen\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Archivos de encabezado\Modules</Filter>
+    </ClInclude>
     <ClInclude Include="Timer.h">
+      <Filter>Archivos de origen\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

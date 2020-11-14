@@ -39,6 +39,9 @@ enum class ENGINE_STATUS
 	FINISHED
 };
 
+using uint = unsigned int;
+using uchar = unsigned char;
+
 #endif // !_GLOBALS_H_
 
 

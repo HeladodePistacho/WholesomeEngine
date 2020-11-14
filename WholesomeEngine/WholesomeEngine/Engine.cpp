@@ -1,19 +1,21 @@
 #include "Engine.h"
 #include "Module.h"
-
+#include "ModuleWindow.h"
 
 Engine::Engine()
 {
-	for (int i = 0; i < 5; ++i)
-	{
-		Module* mod = new Module();
-		modules.push_back(mod);
-	}
+	ModuleWindow* window = new ModuleWindow();
+	modules.push_back(window);
 }
 
 
 Engine::~Engine()
 {
+	IterateModules([](Module* mod) { 
+		delete mod;
+		mod = nullptr;
+		return ENGINE_STATUS::SUCCESS;
+	 });
 }
 
 ENGINE_STATUS Engine::Init()

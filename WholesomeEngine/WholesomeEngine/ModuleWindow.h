@@ -3,8 +3,8 @@
 
 #include "Module.h"
 #include <memory>
+#include <SDL2/SDL.h>
 
-class SDL_Window;
 class ModuleWindow : public Module
 {
 public:
@@ -12,11 +12,12 @@ public:
 	~ModuleWindow();
 
 	ENGINE_STATUS Init();
+	ENGINE_STATUS CleanUp();
 private:
 	uint width{1280};
 	uint height{720};
 
-	std::unique_ptr<SDL_Window> window;
+	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
 };
 
 #endif

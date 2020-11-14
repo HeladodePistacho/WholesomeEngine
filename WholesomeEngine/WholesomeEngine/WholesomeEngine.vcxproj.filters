@@ -34,7 +34,7 @@
       <Filter>Archivos de origen\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleWindow.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +51,7 @@
       <Filter>Archivos de origen\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWindow.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

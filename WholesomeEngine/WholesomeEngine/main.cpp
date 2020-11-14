@@ -44,6 +44,8 @@ int main()
 				DEBUG::LOG("[ERROR] Application Fail Start", nullptr);
 				main_state = MAIN_STATE::MAIN_EXIT;
 			}	
+
+			DEBUG::LOG("--------------- LOOP ENGINE -------------", nullptr);
 			break;
 
 		case MAIN_STATE::MAIN_UPDATE:

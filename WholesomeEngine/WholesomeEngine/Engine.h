@@ -1,7 +1,9 @@
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 #include "Globals.h"
+#include <vector>
 
+class Module;
 class Engine
 {
 public:
@@ -18,10 +20,13 @@ private:
 	ENGINE_STATUS CurrUpdate();
 	ENGINE_STATUS PostUpdate();
 
+	std::vector<Module*> modules;
+	ENGINE_STATUS engine_status{};
+
+	template<typename FUNC>
+	ENGINE_STATUS IterateModules(FUNC);
 };
 
 #endif // !_ENGINE_H_
-
-
 
 

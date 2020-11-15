@@ -2,14 +2,17 @@
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleRender.h"
 
 Engine::Engine()
 {
 	ModuleWindow* window = new ModuleWindow();
 	ModuleInput* input = new ModuleInput();
+	ModuleRender* render = new ModuleRender();
 
 	modules.push_back(window);
 	modules.push_back(input);
+	modules.push_back(render);
 }
 
 
@@ -37,9 +40,11 @@ ENGINE_STATUS Engine::Update()
 	if (PreUpdate() != ENGINE_STATUS::SUCCESS)
 		return engine_status;
 
-	CurrUpdate();
+	if (CurrUpdate() != ENGINE_STATUS::SUCCESS)
+		return engine_status;
 
-	PostUpdate();
+	if (PostUpdate() != ENGINE_STATUS::SUCCESS)
+		return engine_status;
 
 	return ENGINE_STATUS::SUCCESS;
 }

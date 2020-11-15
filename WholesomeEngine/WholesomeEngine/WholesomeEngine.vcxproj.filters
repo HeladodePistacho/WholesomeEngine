@@ -39,6 +39,9 @@
     <ClCompile Include="ModuleInput.cpp">
       <Filter>Archivos de origen\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="ModuleInput.h">
       <Filter>Archivos de encabezado\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRender.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

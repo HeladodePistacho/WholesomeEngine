@@ -1,11 +1,15 @@
 #include "Engine.h"
 #include "Module.h"
 #include "ModuleWindow.h"
+#include "ModuleInput.h"
 
 Engine::Engine()
 {
 	ModuleWindow* window = new ModuleWindow();
+	ModuleInput* input = new ModuleInput();
+
 	modules.push_back(window);
+	modules.push_back(input);
 }
 
 
@@ -30,7 +34,8 @@ ENGINE_STATUS Engine::Start()
 
 ENGINE_STATUS Engine::Update()
 {
-	PreUpdate();
+	if (PreUpdate() != ENGINE_STATUS::SUCCESS)
+		return engine_status;
 
 	CurrUpdate();
 
@@ -46,7 +51,8 @@ ENGINE_STATUS Engine::CleanUp()
 
 ENGINE_STATUS Engine::PreUpdate()
 {
-	return IterateModules([](Module* mod) { return mod->PreUpdate(); });
+	IterateModules([](Module* mod) { return mod->PreUpdate(); });
+	return engine_status;
 }
 
 ENGINE_STATUS Engine::CurrUpdate()
@@ -66,7 +72,7 @@ ENGINE_STATUS Engine::IterateModules(FUNC function)
 	{
 		engine_status = function(mod);
 
-		if (engine_status == ENGINE_STATUS::FAIL)
+		if (engine_status != ENGINE_STATUS::SUCCESS)
 			return engine_status;
 	}
 

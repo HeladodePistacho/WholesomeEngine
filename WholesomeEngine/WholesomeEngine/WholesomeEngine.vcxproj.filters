@@ -36,6 +36,9 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Archivos de origen\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Archivos de origen\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -51,6 +54,9 @@
       <Filter>Archivos de origen\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleWindow.h">
+      <Filter>Archivos de encabezado\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
       <Filter>Archivos de encabezado\Modules</Filter>
     </ClInclude>
   </ItemGroup>

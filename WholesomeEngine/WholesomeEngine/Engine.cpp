@@ -36,7 +36,7 @@ ENGINE_STATUS Engine::Update()
 
 	PostUpdate();
 
-	return ENGINE_STATUS::FINISHED;
+	return ENGINE_STATUS::SUCCESS;
 }
 
 ENGINE_STATUS Engine::CleanUp()

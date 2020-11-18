@@ -22,6 +22,12 @@
     <Filter Include="Archivos de encabezado\Modules">
       <UniqueIdentifier>{cb4faca5-6a12-4540-9c60-472a45018aa3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\RenderUtilities">
+      <UniqueIdentifier>{3ed9eb72-c9b4-4571-8167-18187f7df34e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\RenderUtilities">
+      <UniqueIdentifier>{fb16943d-034b-4b92-86cf-53065f3b4710}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,7 +46,10 @@
       <Filter>Archivos de origen\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleRender.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanInstance.cpp">
+      <Filter>Archivos de origen\RenderUtilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +72,10 @@
       <Filter>Archivos de encabezado\Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRender.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanInstance.h">
+      <Filter>Archivos de encabezado\RenderUtilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

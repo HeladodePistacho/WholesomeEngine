@@ -2,8 +2,7 @@
 #define _MODULE_RENDER_H_
 
 #include "Module.h"
-#include <memory>
-#include "vulkan/vulkan.hpp"
+#include "VulkanInstance.h"
 
 class ModuleRender : public Module
 {
@@ -15,7 +14,7 @@ public:
 	ENGINE_STATUS CleanUp();
 
 private:
-	std::unique_ptr<VkInstance> vulkan_instance;
+	VulkanInstance vulkan_instance;
 
 };
 

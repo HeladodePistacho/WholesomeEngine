@@ -13,7 +13,7 @@ ModuleInput::~ModuleInput()
 
 ENGINE_STATUS ModuleInput::PreUpdate()
 {
-	SDL_Event current_event{};
+	static SDL_Event current_event{};
 	while (SDL_PollEvent(&current_event))
 	{
 		switch (current_event.type)

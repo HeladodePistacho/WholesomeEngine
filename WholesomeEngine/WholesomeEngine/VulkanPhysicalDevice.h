@@ -14,10 +14,13 @@ public:
 	~VulkanPhysicalDevice();
 
 	VulkanPhysicalDevice& operator=(const VkPhysicalDevice& device);
+	VulkanPhysicalDevice& operator=(const VulkanPhysicalDevice& device);
 
-	VkResult InitDevice(const VkInstance& instance);
 	const VkPhysicalDevice& GetPhysicalDevice() const;
+	VkResult InitDevice();
+	bool IsValid() const;
 
+	void PrintInformation() const;
 private:
 	VkPhysicalDevice physical_device;
 	std::vector<VkQueueFamilyProperties> queue_properties;

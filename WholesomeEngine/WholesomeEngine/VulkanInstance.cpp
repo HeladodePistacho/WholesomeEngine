@@ -49,7 +49,7 @@ VkInstance& VulkanInstance::GetInstance() const
 
 VkResult VulkanInstance::SelectPhysicalDevice()
 {
-	uint device_count = 0;
+	uint32 device_count = 0;
 	VkResult ret = VkResult::VK_SUCCESS;
 
 	//Get Num of Devices
@@ -79,14 +79,26 @@ VkResult VulkanInstance::SelectPhysicalDevice()
 	//By now It Will be the first one finded
 	for (const auto& device : devices)
 	{
-		gpus.emplace_back(device);
-		PrintDeviceInformation(device);
+		gpus.push_back(device);
 	}
-	current_gpu = gpus[0];
+
+	for (auto& device : gpus)
+	{
+		device.InitDevice();
+
+		if (device.IsValid())
+		{
+			current_gpu = device;
+			DEBUG::LOG("Using GPU: ", nullptr);
+			current_gpu.PrintInformation();
+			break;
+		}
+	}
 	
+	return ret;
 }
 
-void VulkanInstance::PrintDeviceInformation(uint index) const
+void VulkanInstance::PrintDeviceInformation(uint8 index) const
 {
 	if (index >= gpus.size())
 	{
@@ -94,33 +106,6 @@ void VulkanInstance::PrintDeviceInformation(uint index) const
 		return;
 	}
 
-	PrintDeviceInformation(gpus[index]);
+	gpus[index].PrintInformation();
 }
 
-void VulkanInstance::PrintDeviceInformation(const VkPhysicalDevice& device) const
-{
-	VkPhysicalDeviceProperties device_properties;
-	vkGetPhysicalDeviceProperties(device, &device_properties);
-
-	DEBUG::LOG("Device: %", device_properties.deviceName);
-	DEBUG::LOG("\t ID: %", device_properties.deviceID);
-
-	switch (device_properties.deviceType)
-	{
-	case VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_CPU:
-		DEBUG::LOG("\t TYPE: CPU", nullptr);
-		break;
-	case VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU:
-		DEBUG::LOG("\t TYPE: DISCRETE GPU", nullptr);
-		break;
-	case VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU:
-		DEBUG::LOG("\t TYPE: INTEGRATED GPU", nullptr);
-		break;
-	case VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU:
-		DEBUG::LOG("\t TYPE: VIRTUAL GPU", nullptr);
-		break;
-	case VkPhysicalDeviceType::VK_PHYSICAL_DEVICE_TYPE_OTHER:
-		DEBUG::LOG("\t TYPE: UNKNOWN TYPE", nullptr);
-		break;
-	}
-}

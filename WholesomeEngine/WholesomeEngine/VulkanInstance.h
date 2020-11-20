@@ -2,18 +2,15 @@
 #define _VULKAN_INSTANCE_H_
 
 #include <memory>
-#include "Globals.h"
-#include <vector>
-#include "vulkan/vulkan.hpp"
+#include "VulkanPhysicalDevice.h"
 
 class VulkanInstance
 {
 private:
 	std::unique_ptr<VkInstance> instance;
-	std::vector<VkPhysicalDevice> gpus;
-	VkPhysicalDevice current_gpu;
+	std::vector<VulkanPhysicalDevice> gpus;
+	VulkanPhysicalDevice current_gpu;
 
-	void PrintDeviceInformation(const VkPhysicalDevice& device) const;
 public:
 	VulkanInstance();
 	VulkanInstance(const VulkanInstance&) = delete;
@@ -25,7 +22,7 @@ public:
 
 	//Devices
 	VkResult SelectPhysicalDevice();
-	void PrintDeviceInformation(uint index) const;
+	void PrintDeviceInformation(uint8 index) const;
 };
 
 #endif

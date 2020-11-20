@@ -51,6 +51,12 @@
     <ClCompile Include="VulkanInstance.cpp">
       <Filter>Archivos de origen\RenderUtilities</Filter>
     </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="VulkanPhysicalDevice.cpp">
+      <Filter>Archivos de origen\RenderUtilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -75,6 +81,15 @@
       <Filter>Archivos de encabezado\Modules</Filter>
     </ClInclude>
     <ClInclude Include="VulkanInstance.h">
+      <Filter>Archivos de encabezado\RenderUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="WholesomeEvent.h">
+      <Filter>Archivos de origen\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanPhysicalDevice.h">
       <Filter>Archivos de encabezado\RenderUtilities</Filter>
     </ClInclude>
   </ItemGroup>

@@ -39,8 +39,10 @@ enum class ENGINE_STATUS
 	FINISHED
 };
 
-using uint = unsigned int;
-using uchar = unsigned char;
+using uint8 = unsigned char;
+using uint16 = unsigned short;
+using uint32 = unsigned int;
+using uint64 = unsigned long long;
 
 #endif // !_GLOBALS_H_
 

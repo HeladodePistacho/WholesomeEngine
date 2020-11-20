@@ -30,7 +30,11 @@ ENGINE_STATUS ModuleRender::Init()
 	}
 	DEBUG::LOG("[SUCCESS] Creating Vulkan Instance Success", nullptr);
 
-	vulkan_instance.SelectPhysicalDevice();
+	if (auto result = vulkan_instance.SelectPhysicalDevice(); result != VK_SUCCESS)
+	{
+		DEBUG::LOG("[ERROR] Selecting Physical Device Failure", nullptr);
+		ret = ENGINE_STATUS::FAIL;
+	}
 
 	return ret;
 }

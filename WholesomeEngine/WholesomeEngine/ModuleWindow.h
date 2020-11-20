@@ -14,8 +14,8 @@ public:
 	ENGINE_STATUS Init();
 	ENGINE_STATUS CleanUp();
 private:
-	uint width{1280};
-	uint height{720};
+	uint16 width{1280};
+	uint16 height{720};
 
 	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
 };

@@ -57,6 +57,9 @@
     <ClCompile Include="VulkanPhysicalDevice.cpp">
       <Filter>Archivos de origen\RenderUtilities</Filter>
     </ClCompile>
+    <ClCompile Include="VulkanLogicalDevice.cpp">
+      <Filter>Archivos de origen\RenderUtilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -90,6 +93,9 @@
       <Filter>Archivos de origen\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="VulkanPhysicalDevice.h">
+      <Filter>Archivos de encabezado\RenderUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="VulkanLogicalDevice.h">
       <Filter>Archivos de encabezado\RenderUtilities</Filter>
     </ClInclude>
   </ItemGroup>

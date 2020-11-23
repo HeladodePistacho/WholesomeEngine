@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "VulkanInstance.h"
 
+class VulkanLogicalDevice;
+
 class ModuleRender : public Module
 {
 public:
@@ -15,7 +17,7 @@ public:
 
 private:
 	VulkanInstance vulkan_instance;
-
+	std::unique_ptr<VulkanLogicalDevice> logic_device;
 };
 
 #endif

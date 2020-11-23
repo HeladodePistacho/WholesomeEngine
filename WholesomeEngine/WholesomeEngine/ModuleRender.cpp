@@ -1,7 +1,6 @@
 #include "ModuleRender.h"
+#include "VulkanLogicalDevice.h"
 #include <SDL2/SDL_vulkan.h>
-
-
 
 ModuleRender::ModuleRender()
 {

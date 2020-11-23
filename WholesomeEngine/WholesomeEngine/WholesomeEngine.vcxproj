@@ -139,6 +139,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="VulkanInstance.cpp" />
+    <ClCompile Include="VulkanLogicalDevice.cpp" />
     <ClCompile Include="VulkanPhysicalDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="VulkanInstance.h" />
+    <ClInclude Include="VulkanLogicalDevice.h" />
     <ClInclude Include="VulkanPhysicalDevice.h" />
     <ClInclude Include="WholesomeEvent.h" />
   </ItemGroup>

@@ -83,11 +83,16 @@ VkResult VulkanPhysicalDevice::InitDevice()
 	uint32 family_count;
 	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &family_count, nullptr);
 
-	//Get Family Queues
-	std::vector<VkQueueFamilyProperties> properties(family_count);
-	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &family_count, properties.data());
+	if (family_count == 0)
+	{
+		DEBUG::LOG("[ERROR] Physical device no queue families found", nullptr);
+		ret = VkResult::VK_ERROR_UNKNOWN;
+		return ret;
+	}
 
-	queue_properties = properties;
+	//Get Family Queues
+	queue_properties = std::vector<VkQueueFamilyProperties>(family_count);
+	vkGetPhysicalDeviceQueueFamilyProperties(physical_device, &family_count, queue_properties.data());
 	
 	uint32 i = 0;
 	for (const auto& property : queue_properties)

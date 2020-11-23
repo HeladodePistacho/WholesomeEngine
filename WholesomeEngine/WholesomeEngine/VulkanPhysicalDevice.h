@@ -11,6 +11,7 @@ class VulkanPhysicalDevice
 public:
 	VulkanPhysicalDevice();
 	VulkanPhysicalDevice(const VkPhysicalDevice& device);
+	VulkanPhysicalDevice(const VulkanPhysicalDevice& device);
 	~VulkanPhysicalDevice();
 
 	VulkanPhysicalDevice& operator=(const VkPhysicalDevice& device);

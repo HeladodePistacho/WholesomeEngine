@@ -12,6 +12,8 @@ public:
 	~VulkanLogicalDevice();
 
 	VkResult InitDevice(const VulkanInstance& vulkan_instance);
+	void DestroyDevice();
+
 	const VkDevice& GetDevice() const;
 private:
 	std::unique_ptr<VkDevice> logic_device;

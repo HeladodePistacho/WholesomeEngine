@@ -11,6 +11,10 @@ VulkanPhysicalDevice::VulkanPhysicalDevice(const VkPhysicalDevice& device) : phy
 
 }
 
+VulkanPhysicalDevice::VulkanPhysicalDevice(const VulkanPhysicalDevice& device) : physical_device(device.physical_device), queue_properties(device.queue_properties), valid_family_index(device.valid_family_index)
+{
+}
+
 
 VulkanPhysicalDevice::~VulkanPhysicalDevice()
 {
@@ -31,6 +35,8 @@ VulkanPhysicalDevice& VulkanPhysicalDevice::operator=(const VulkanPhysicalDevice
 		queue_properties.push_back(family);
 	}
 
+	valid_family_index = device.valid_family_index;
+
 	return *this;
 }
 
@@ -46,7 +52,7 @@ bool VulkanPhysicalDevice::IsValid() const
 
 uint32 VulkanPhysicalDevice::GetFamilyIndex() const
 {
-	assert(valid_family_index.has_value() == false);
+	assert(valid_family_index.has_value() == true, "No Index Family for this Device");
 	return valid_family_index.value();
 }
 

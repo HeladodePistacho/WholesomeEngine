@@ -36,6 +36,7 @@ void VulkanInstance::DestroyInstance()
 {
 	if (instance != nullptr)
 	{
+		DEBUG::LOG("DESTROYING Instance ", nullptr);
 		vkDestroyInstance(*instance, nullptr);
 		instance.reset(nullptr);
 	}

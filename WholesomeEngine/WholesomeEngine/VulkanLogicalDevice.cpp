@@ -3,15 +3,14 @@
 #include "VulkanPhysicalDevice.h"
 
 
-VulkanLogicalDevice::VulkanLogicalDevice()
+VulkanLogicalDevice::VulkanLogicalDevice() : logic_device(std::make_unique<VkDevice>())
 {
 }
 
 
 VulkanLogicalDevice::~VulkanLogicalDevice()
 {
-	if(logic_device != nullptr)
-		vkDestroyDevice(*logic_device, nullptr);
+	
 }
 
 VkResult VulkanLogicalDevice::InitDevice(const VulkanInstance& vulkan_instance)
@@ -48,10 +47,21 @@ VkResult VulkanLogicalDevice::InitDevice(const VulkanInstance& vulkan_instance)
 	//Create the device
 	if (auto result = vkCreateDevice(vulkan_instance.GetPhysicalDevice().PhysicalDevice(), &logic_device_info, nullptr, logic_device.get()); result != VK_SUCCESS)
 	{
-		DEBUG::LOG("[ERROR] CREATING VK_LOGICAL_DEVICE FAILURE", nullptr);
+		DEBUG::LOG("[ERROR] vkCreateDevice FAILURE", nullptr);
 		return result;
 	}
 
 	return VkResult::VK_SUCCESS;
 
+}
+
+void VulkanLogicalDevice::DestroyDevice()
+{
+	if (logic_device != nullptr)
+	{
+		DEBUG::LOG("DESTROYING Logic Device ", nullptr);
+		vkDestroyDevice(*logic_device, nullptr);
+		logic_device.reset(nullptr);
+	}
+	else DEBUG::LOG("[ERROR] Device was Nullptr ", nullptr);
 }

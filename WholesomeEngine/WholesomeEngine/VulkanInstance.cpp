@@ -109,3 +109,8 @@ void VulkanInstance::PrintDeviceInformation(uint8 index) const
 	gpus[index].PrintInformation();
 }
 
+const VulkanPhysicalDevice& VulkanInstance::GetPhysicalDevice() const
+{
+	return current_gpu;
+}
+

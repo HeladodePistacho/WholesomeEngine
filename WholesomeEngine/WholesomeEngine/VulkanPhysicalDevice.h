@@ -16,9 +16,11 @@ public:
 	VulkanPhysicalDevice& operator=(const VkPhysicalDevice& device);
 	VulkanPhysicalDevice& operator=(const VulkanPhysicalDevice& device);
 
-	const VkPhysicalDevice& GetPhysicalDevice() const;
+	const VkPhysicalDevice& PhysicalDevice() const;
 	VkResult InitDevice();
+
 	bool IsValid() const;
+	uint32 GetFamilyIndex() const;
 
 	void PrintInformation() const;
 private:

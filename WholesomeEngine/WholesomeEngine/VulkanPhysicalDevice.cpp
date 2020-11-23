@@ -1,5 +1,5 @@
 #include "VulkanPhysicalDevice.h"
-
+#include <assert.h>
 
 
 VulkanPhysicalDevice::VulkanPhysicalDevice() : physical_device(VK_NULL_HANDLE)
@@ -34,7 +34,7 @@ VulkanPhysicalDevice& VulkanPhysicalDevice::operator=(const VulkanPhysicalDevice
 	return *this;
 }
 
-const VkPhysicalDevice& VulkanPhysicalDevice::GetPhysicalDevice() const
+const VkPhysicalDevice& VulkanPhysicalDevice::PhysicalDevice() const
 {
 	return physical_device;
 }
@@ -42,6 +42,12 @@ const VkPhysicalDevice& VulkanPhysicalDevice::GetPhysicalDevice() const
 bool VulkanPhysicalDevice::IsValid() const
 {
 	return valid_family_index.has_value();
+}
+
+uint32 VulkanPhysicalDevice::GetFamilyIndex() const
+{
+	assert(valid_family_index.has_value() == false);
+	return valid_family_index.value();
 }
 
 void VulkanPhysicalDevice::PrintInformation() const

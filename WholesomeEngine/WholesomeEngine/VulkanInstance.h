@@ -23,6 +23,7 @@ public:
 	//Devices
 	VkResult SelectPhysicalDevice();
 	void PrintDeviceInformation(uint8 index) const;
+	const VulkanPhysicalDevice& GetPhysicalDevice() const;
 };
 
 #endif

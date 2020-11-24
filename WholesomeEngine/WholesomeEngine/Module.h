@@ -1,6 +1,13 @@
 #ifndef _MODULE_H_
 #define _MODULE_H_
+
 #include "Globals.h"
+#include <memory>
+#include <optional>
+
+enum class W_EVENT_TYPE;
+class EventManager;
+class WholesomeEvent;
 
 class Module
 {
@@ -14,6 +21,16 @@ public:
 	virtual ENGINE_STATUS Update()     { return ENGINE_STATUS::SUCCESS; };
 	virtual ENGINE_STATUS PostUpdate() { return ENGINE_STATUS::SUCCESS; };
 	virtual ENGINE_STATUS CleanUp()    { return ENGINE_STATUS::SUCCESS; };
+
+//Event System
+protected:
+	EventManager& GetEventManager() const;
+	virtual void ThrowEvent() {};
+	virtual void OnEventRecieved(const WholesomeEvent& event_recieved) {};
+	std::optional<W_EVENT_TYPE> subscription_to_events;
+
+private:
+	std::weak_ptr<EventManager> event_manager;
 };
 
 

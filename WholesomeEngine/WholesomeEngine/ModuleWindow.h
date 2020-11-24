@@ -4,6 +4,7 @@
 #include "Module.h"
 #include <memory>
 #include <SDL2/SDL.h>
+#include "vulkan/vulkan.hpp"
 
 class ModuleWindow : public Module
 {
@@ -18,6 +19,7 @@ private:
 	uint16 height{720};
 
 	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
+	VkSurfaceKHR c_surface;
 };
 
 #endif

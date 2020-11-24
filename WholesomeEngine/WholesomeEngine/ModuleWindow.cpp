@@ -1,11 +1,12 @@
 #include "ModuleWindow.h"
-
+#include "EventManager.h"
+#include "WholesomeEvent.h"
 
 
 ModuleWindow::ModuleWindow() : window(nullptr, SDL_DestroyWindow)
 {
+	//subscription_to_events = W_EVENT_TYPE::WE_SURFACE_CREATION | W_EVENT_TYPE::WE_TEST;
 }
-
 
 ModuleWindow::~ModuleWindow()
 {
@@ -33,6 +34,8 @@ ENGINE_STATUS ModuleWindow::Init()
 		return ENGINE_STATUS::FAIL;
 	}
 	DEBUG::LOG("[SUCCESS] SDL Window Created Successfully", nullptr);
+
+	
 
 	return ret;
 }

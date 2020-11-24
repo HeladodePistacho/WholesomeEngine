@@ -2,9 +2,11 @@
 #define _VULKAN_LOGICAL_DEVICE_H_
 
 #include <memory>
+#include "Globals.h"
 #include <vulkan/vulkan.hpp>
 
 class VulkanInstance;
+
 class VulkanLogicalDevice
 {
 public:
@@ -16,7 +18,7 @@ public:
 
 	const VkDevice& GetDevice() const;
 private:
-	std::unique_ptr<VkDevice> logic_device;
+	VkDevice logic_device;
 };
 
 #endif

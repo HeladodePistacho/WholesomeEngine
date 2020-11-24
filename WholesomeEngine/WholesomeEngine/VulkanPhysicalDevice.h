@@ -17,7 +17,7 @@ public:
 	VulkanPhysicalDevice& operator=(const VkPhysicalDevice& device);
 	VulkanPhysicalDevice& operator=(const VulkanPhysicalDevice& device);
 
-	const VkPhysicalDevice& PhysicalDevice() const;
+	VkPhysicalDevice PhysicalDevice() const;
 	VkResult InitDevice();
 
 	bool IsValid() const;

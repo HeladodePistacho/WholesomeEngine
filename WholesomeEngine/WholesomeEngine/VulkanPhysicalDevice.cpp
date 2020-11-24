@@ -40,7 +40,7 @@ VulkanPhysicalDevice& VulkanPhysicalDevice::operator=(const VulkanPhysicalDevice
 	return *this;
 }
 
-const VkPhysicalDevice& VulkanPhysicalDevice::PhysicalDevice() const
+VkPhysicalDevice VulkanPhysicalDevice::PhysicalDevice() const
 {
 	return physical_device;
 }

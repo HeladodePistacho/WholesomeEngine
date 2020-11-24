@@ -17,7 +17,7 @@ public:
 
 private:
 	VulkanInstance vulkan_instance;
-	std::unique_ptr<VulkanLogicalDevice> logic_device;
+	std::unique_ptr<VulkanLogicalDevice> vulkan_logic_device;
 };
 
 #endif

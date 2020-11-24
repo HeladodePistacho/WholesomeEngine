@@ -2,7 +2,7 @@
 #include "VulkanLogicalDevice.h"
 #include <SDL2/SDL_vulkan.h>
 
-ModuleRender::ModuleRender() : logic_device(std::make_unique<VulkanLogicalDevice>())
+ModuleRender::ModuleRender() : vulkan_logic_device(std::make_unique<VulkanLogicalDevice>())
 {
 }
 
@@ -48,8 +48,9 @@ ENGINE_STATUS ModuleRender::CleanUp()
 {
 	DEBUG::LOG("...Cleaning Render...", nullptr);
 
-	vulkan_instance.DestroyInstance();
 	vulkan_logic_device->DestroyDevice();
+	vulkan_instance.DestroyInstance();
+
 
 	return ENGINE_STATUS::SUCCESS;
 }

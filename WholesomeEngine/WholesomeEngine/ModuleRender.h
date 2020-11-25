@@ -9,7 +9,7 @@ class VulkanLogicalDevice;
 class ModuleRender : public Module
 {
 public:
-	ModuleRender();
+	ModuleRender(std::shared_ptr<EventManager> manager);
 	~ModuleRender();
 
 	ENGINE_STATUS Init();

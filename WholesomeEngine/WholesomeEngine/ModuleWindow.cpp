@@ -3,8 +3,9 @@
 #include "WholesomeEvent.h"
 
 
-ModuleWindow::ModuleWindow() : window(nullptr, SDL_DestroyWindow)
+ModuleWindow::ModuleWindow(std::shared_ptr<EventManager> manager) : Module(manager), window(nullptr, SDL_DestroyWindow)
 {
+	DEBUG::LOG("CREATING MODULE WINDOW", nullptr);
 	subscription_to_events = { W_EVENT_TYPE::WE_SURFACE_CREATION, W_EVENT_TYPE::WE_TEST };
 }
 

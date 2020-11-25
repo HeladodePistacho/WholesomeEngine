@@ -2,9 +2,9 @@
 
 
 
-Module::Module()
+Module::Module(std::shared_ptr<EventManager> manager) : event_manager(manager)
 {
-	DEBUG::LOG("CREATING MODULE", nullptr);
+	
 }
 
 

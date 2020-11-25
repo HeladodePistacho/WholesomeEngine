@@ -9,7 +9,7 @@
 class ModuleWindow : public Module
 {
 public:
-	ModuleWindow();
+	ModuleWindow(std::shared_ptr<EventManager> manager);
 	~ModuleWindow();
 
 	ENGINE_STATUS Init();

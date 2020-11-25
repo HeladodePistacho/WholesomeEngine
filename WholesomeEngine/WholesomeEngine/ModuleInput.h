@@ -5,7 +5,7 @@
 class ModuleInput : public Module
 {
 public:
-	ModuleInput();
+	ModuleInput(std::shared_ptr<EventManager> manager);
 	~ModuleInput();
 
 	ENGINE_STATUS PreUpdate();

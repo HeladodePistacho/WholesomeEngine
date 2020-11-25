@@ -2,8 +2,9 @@
 #include "SDL2/SDL.h"
 
 
-ModuleInput::ModuleInput()
+ModuleInput::ModuleInput(std::shared_ptr<EventManager> manager) : Module(manager)
 {
+	DEBUG::LOG("CREATING MODULE INPUT", nullptr);
 }
 
 

@@ -13,7 +13,7 @@ class WholesomeEvent;
 class Module
 {
 public:
-	Module();
+	Module(std::shared_ptr<EventManager>);
 	virtual ~Module();
 
 	virtual ENGINE_STATUS Init()       { return ENGINE_STATUS::SUCCESS; };

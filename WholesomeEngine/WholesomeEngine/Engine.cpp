@@ -7,9 +7,9 @@
 
 Engine::Engine() : event_manager(std::make_shared<EventManager>())
 {
-	modules.emplace_back(std::make_shared<ModuleWindow>());
-	modules.emplace_back(std::make_shared<ModuleInput>());
-	modules.emplace_back(std::make_shared<ModuleRender>());
+	modules.emplace_back(std::make_shared<ModuleWindow>(event_manager));
+	modules.emplace_back(std::make_shared<ModuleInput>(event_manager));
+	modules.emplace_back(std::make_shared<ModuleRender>(event_manager));
 }
 
 

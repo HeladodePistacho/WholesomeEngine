@@ -2,8 +2,9 @@
 #include "VulkanLogicalDevice.h"
 #include <SDL2/SDL_vulkan.h>
 
-ModuleRender::ModuleRender() : vulkan_logic_device(std::make_unique<VulkanLogicalDevice>())
+ModuleRender::ModuleRender(std::shared_ptr<EventManager> manager) : Module(manager), vulkan_logic_device(std::make_unique<VulkanLogicalDevice>())
 {
+	DEBUG::LOG("CREATING MODULE RENDER", nullptr);
 }
 
 

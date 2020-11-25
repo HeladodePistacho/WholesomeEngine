@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include <memory>
 #include <optional>
+#include <vector>
 
 enum class W_EVENT_TYPE;
 class EventManager;
@@ -22,12 +23,14 @@ public:
 	virtual ENGINE_STATUS PostUpdate() { return ENGINE_STATUS::SUCCESS; };
 	virtual ENGINE_STATUS CleanUp()    { return ENGINE_STATUS::SUCCESS; };
 
+	const std::optional<std::vector<W_EVENT_TYPE>>& GetSubscription() const;
+
 //Event System
 protected:
-	EventManager& GetEventManager() const;
+	//EventManager& GetEventManager() const;
 	virtual void ThrowEvent() {};
 	virtual void OnEventRecieved(const WholesomeEvent& event_recieved) {};
-	std::optional<W_EVENT_TYPE> subscription_to_events;
+	std::optional<std::vector<W_EVENT_TYPE>> subscription_to_events;
 
 private:
 	std::weak_ptr<EventManager> event_manager;

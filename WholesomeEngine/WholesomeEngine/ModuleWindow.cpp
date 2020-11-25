@@ -5,7 +5,7 @@
 
 ModuleWindow::ModuleWindow() : window(nullptr, SDL_DestroyWindow)
 {
-	//subscription_to_events = W_EVENT_TYPE::WE_SURFACE_CREATION | W_EVENT_TYPE::WE_TEST;
+	subscription_to_events = { W_EVENT_TYPE::WE_SURFACE_CREATION, W_EVENT_TYPE::WE_TEST };
 }
 
 ModuleWindow::~ModuleWindow()

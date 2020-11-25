@@ -16,6 +16,8 @@ public:
 	EventManager();
 	~EventManager();
 
+	void SubscribeModule(std::shared_ptr<Module> mod_to_subscrive);
+
 	//void BroadcastInitEvents();
 	//void ThrowEvent(std::shared_ptr<WholesomeEvent> w_event);
 private:

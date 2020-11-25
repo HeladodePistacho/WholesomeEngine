@@ -3,36 +3,30 @@
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "EventManager.h"
 
-Engine::Engine()
+Engine::Engine() : event_manager(std::make_shared<EventManager>())
 {
-	ModuleWindow* window = new ModuleWindow();
-	ModuleInput* input = new ModuleInput();
-	ModuleRender* render = new ModuleRender();
-
-	modules.push_back(window);
-	modules.push_back(input);
-	modules.push_back(render);
+	modules.emplace_back(std::make_shared<ModuleWindow>());
+	modules.emplace_back(std::make_shared<ModuleInput>());
+	modules.emplace_back(std::make_shared<ModuleRender>());
 }
 
 
 Engine::~Engine()
 {
-	IterateModules([](Module* mod) { 
-		delete mod;
-		mod = nullptr;
-		return ENGINE_STATUS::SUCCESS;
-	 });
+	
 }
 
 ENGINE_STATUS Engine::Init()
 {
-	return IterateModules([](Module* mod) { return mod->Init(); });
+	SubscribeModules();
+	return IterateModules([](Module& mod) { return mod.Init(); });
 }
 
 ENGINE_STATUS Engine::Start()
 {
-	return IterateModules([](Module* mod) { return mod->Start(); });
+	return IterateModules([](Module& mod) { return mod.Start(); });
 }
 
 ENGINE_STATUS Engine::Update()
@@ -51,23 +45,31 @@ ENGINE_STATUS Engine::Update()
 
 ENGINE_STATUS Engine::CleanUp()
 {
-	return IterateModules([](Module* mod) { return mod->CleanUp(); });
+	return IterateModules([](Module& mod) { return mod.CleanUp(); });
 }
 
 ENGINE_STATUS Engine::PreUpdate()
 {
-	IterateModules([](Module* mod) { return mod->PreUpdate(); });
+	IterateModules([](Module& mod) { return mod.PreUpdate(); });
 	return engine_status;
 }
 
 ENGINE_STATUS Engine::CurrUpdate()
 {
-	return IterateModules([](Module* mod) { return mod->Update(); });
+	return IterateModules([](Module& mod) { return mod.Update(); });
 }
 
 ENGINE_STATUS Engine::PostUpdate()
 {
-	return IterateModules([](Module* mod) { return mod->PostUpdate(); });
+	return IterateModules([](Module& mod) { return mod.PostUpdate(); });
+}
+
+void Engine::SubscribeModules()
+{
+	for (auto mod : modules)
+	{
+		event_manager->SubscribeModule(mod);
+	}
 }
 
 template<typename FUNC>
@@ -75,7 +77,7 @@ ENGINE_STATUS Engine::IterateModules(FUNC function)
 {
 	for (auto mod : modules)
 	{
-		engine_status = function(mod);
+		engine_status = function(*mod);
 
 		if (engine_status != ENGINE_STATUS::SUCCESS)
 			return engine_status;

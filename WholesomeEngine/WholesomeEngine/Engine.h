@@ -2,8 +2,11 @@
 #define _ENGINE_H_
 #include "Globals.h"
 #include <vector>
+#include <memory>
 
 class Module;
+class EventManager;
+
 class Engine
 {
 public:
@@ -20,11 +23,15 @@ private:
 	ENGINE_STATUS CurrUpdate();
 	ENGINE_STATUS PostUpdate();
 
-	std::vector<Module*> modules;
+	std::vector<std::shared_ptr<Module>> modules;
 	ENGINE_STATUS engine_status{};
 
 	template<typename FUNC>
 	ENGINE_STATUS IterateModules(FUNC);
+
+	//Even System
+	void SubscribeModules();
+	std::shared_ptr<EventManager> event_manager;
 };
 
 #endif // !_ENGINE_H_

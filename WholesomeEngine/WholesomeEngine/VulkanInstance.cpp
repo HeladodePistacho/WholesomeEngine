@@ -43,7 +43,7 @@ void VulkanInstance::DestroyInstance()
 	else DEBUG::LOG("[ERROR] Instance was Nullptr ", nullptr);
 }
 
-VkInstance& VulkanInstance::GetInstance() const
+VkInstance VulkanInstance::GetInstance() const
 {
 	return (*instance);
 }

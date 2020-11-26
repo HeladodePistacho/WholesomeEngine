@@ -17,11 +17,12 @@ enum class W_EVENT_TYPE
 	WE_TEST				
 };
 
+template<typename DATA>
 class WholesomeEvent
 {
 public:
-	template<typename... Params>
-	WholesomeEvent(W_EVENT_TIME time, W_EVENT_TYPE type, Params&&... args) : throw_time(time), event_type(type), event_values(std::make_tuple(std::forward<Params>(args)...))
+
+	WholesomeEvent(W_EVENT_TIME time, W_EVENT_TYPE type, const DATA& data) : throw_time(time), event_type(type), data_structure(data)
 	{
 
 	}
@@ -31,7 +32,7 @@ public:
 private:
 	W_EVENT_TIME throw_time;
 	W_EVENT_TYPE event_type;
-	std::tuple<> event_values;
+	DATA data_structure;
 };
 
 #endif // !_WHOLESOME_EVENT_H_

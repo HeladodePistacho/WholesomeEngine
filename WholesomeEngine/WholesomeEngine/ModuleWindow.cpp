@@ -36,8 +36,6 @@ ENGINE_STATUS ModuleWindow::Init()
 	}
 	DEBUG::LOG("[SUCCESS] SDL Window Created Successfully", nullptr);
 
-	
-
 	return ret;
 }
 

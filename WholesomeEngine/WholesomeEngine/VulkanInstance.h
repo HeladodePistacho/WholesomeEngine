@@ -18,7 +18,7 @@ public:
 	//Instance functions
 	VkResult CreateInstance();
 	void DestroyInstance();
-	VkInstance& GetInstance() const;
+	VkInstance GetInstance() const;
 
 	//Devices
 	VkResult SelectPhysicalDevice();

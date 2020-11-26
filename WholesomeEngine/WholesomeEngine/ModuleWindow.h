@@ -2,11 +2,12 @@
 #define _MODULE_WINDOW_H_
 
 #include "Module.h"
+#include "EventListener.h"
 #include <memory>
 #include <SDL2/SDL.h>
 #include "vulkan/vulkan.hpp"
 
-class ModuleWindow : public Module
+class ModuleWindow : public Module, public EventListener
 {
 public:
 	ModuleWindow(std::shared_ptr<EventManager> manager);

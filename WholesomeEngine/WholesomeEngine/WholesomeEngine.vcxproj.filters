@@ -28,6 +28,12 @@
     <Filter Include="Archivos de origen\RenderUtilities">
       <UniqueIdentifier>{fb16943d-034b-4b92-86cf-53065f3b4710}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\EventSystem">
+      <UniqueIdentifier>{2d66d07f-22b5-49a0-9951-054c3ae288d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\EventSystem">
+      <UniqueIdentifier>{b6d61d3a-47fb-47c4-9e8b-1c7dcbe89049}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,14 +57,20 @@
     <ClCompile Include="VulkanInstance.cpp">
       <Filter>Archivos de origen\RenderUtilities</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="VulkanPhysicalDevice.cpp">
       <Filter>Archivos de origen\RenderUtilities</Filter>
     </ClCompile>
     <ClCompile Include="VulkanLogicalDevice.cpp">
       <Filter>Archivos de origen\RenderUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Archivos de origen\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EventListener.cpp">
+      <Filter>Archivos de origen\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EventThrower.cpp">
+      <Filter>Archivos de origen\EventSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,17 +98,23 @@
     <ClInclude Include="VulkanInstance.h">
       <Filter>Archivos de encabezado\RenderUtilities</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="WholesomeEvent.h">
-      <Filter>Archivos de origen\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="VulkanPhysicalDevice.h">
       <Filter>Archivos de encabezado\RenderUtilities</Filter>
     </ClInclude>
     <ClInclude Include="VulkanLogicalDevice.h">
       <Filter>Archivos de encabezado\RenderUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="WholesomeEvent.h">
+      <Filter>Archivos de encabezado\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventListener.h">
+      <Filter>Archivos de encabezado\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventThrower.h">
+      <Filter>Archivos de encabezado\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Archivos de encabezado\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

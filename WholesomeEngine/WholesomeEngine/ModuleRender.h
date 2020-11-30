@@ -2,14 +2,18 @@
 #define _MODULE_RENDER_H_
 
 #include "Module.h"
+#include "EventThrower.h"
 #include "VulkanInstance.h"
+#include "WholesomeEvent.h"
 
 class VulkanLogicalDevice;
 
-class ModuleRender : public Module
+struct WESurfaceCreation;
+
+class ModuleRender : public Module, public EventThrower<WESurfaceCreation>
 {
 public:
-	ModuleRender(std::shared_ptr<EventManager> manager);
+	ModuleRender();
 	~ModuleRender();
 
 	ENGINE_STATUS Init();
@@ -19,5 +23,6 @@ private:
 	VulkanInstance vulkan_instance;
 	std::unique_ptr<VulkanLogicalDevice> vulkan_logic_device;
 };
+
 
 #endif

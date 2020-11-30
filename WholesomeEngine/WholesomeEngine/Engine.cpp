@@ -5,11 +5,19 @@
 #include "ModuleRender.h"
 #include "EventManager.h"
 
-Engine::Engine() : event_manager(std::make_shared<EventManager>())
+Engine::Engine() : 
+	module_window(std::make_shared<ModuleWindow>()), 
+	module_render(std::make_shared<ModuleRender>()),
+	module_input(std::make_shared<ModuleInput>())
 {
-	modules.emplace_back(std::make_shared<ModuleWindow>(event_manager));
-	modules.emplace_back(std::make_shared<ModuleInput>(event_manager));
-	modules.emplace_back(std::make_shared<ModuleRender>(event_manager));
+	//Add modules to loop vector
+	modules.push_back(module_window);
+	modules.push_back(module_input);
+
+	modules.push_back(module_render);
+
+	//Set modules Event system
+	module_render->AddListener(module_window);
 }
 
 
@@ -20,7 +28,6 @@ Engine::~Engine()
 
 ENGINE_STATUS Engine::Init()
 {
-	SubscribeModules();
 	return IterateModules([](Module& mod) { return mod.Init(); });
 }
 
@@ -64,20 +71,12 @@ ENGINE_STATUS Engine::PostUpdate()
 	return IterateModules([](Module& mod) { return mod.PostUpdate(); });
 }
 
-void Engine::SubscribeModules()
-{
-	for (auto mod : modules)
-	{
-		event_manager->SubscribeModule(mod);
-	}
-}
-
 template<typename FUNC>
 ENGINE_STATUS Engine::IterateModules(FUNC function)
 {
 	for (auto mod : modules)
 	{
-		engine_status = function(*mod);
+		engine_status = function(*(mod.lock()));
 
 		if (engine_status != ENGINE_STATUS::SUCCESS)
 			return engine_status;

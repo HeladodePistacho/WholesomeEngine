@@ -7,14 +7,18 @@
 #include <SDL2/SDL.h>
 #include "vulkan/vulkan.hpp"
 
-class ModuleWindow : public Module, public EventListener
+struct WESurfaceCreation;
+
+class ModuleWindow : public Module, public EventListener<WESurfaceCreation>
 {
 public:
-	ModuleWindow(std::shared_ptr<EventManager> manager);
+	ModuleWindow();
 	~ModuleWindow();
 
 	ENGINE_STATUS Init();
 	ENGINE_STATUS CleanUp();
+
+	void OnEventRecieved(const WESurfaceCreation& event_recieved) override;
 private:
 	uint16 width{1280};
 	uint16 height{720};

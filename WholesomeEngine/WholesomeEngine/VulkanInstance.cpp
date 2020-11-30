@@ -17,6 +17,8 @@ VkResult VulkanInstance::CreateInstance()
 		VK_API_VERSION_1_2									 //Vulkan Api Version
 	};
 
+	const char* extensions[1] = { "VK_KHR_win32_surface" };
+
 	VkInstanceCreateInfo instance_info{
 		VkStructureType::VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO, //StructureType
 		nullptr,												 //Next pointer
@@ -24,8 +26,8 @@ VkResult VulkanInstance::CreateInstance()
 		&application_info,										 //Application info pointer
 		0,														 //Layer Count		 ]
 		nullptr,												 //Layer Names       ]---->Not using Layers nor extensions de momento                 
-		0,														 //Extension Count	 ]
-		nullptr													 //Extension Names   ]
+		1,														 //Extension Count	 ]
+		extensions												 //Extension Names   ]
 	};
 
 	auto result = vkCreateInstance(&instance_info, nullptr, instance.get());

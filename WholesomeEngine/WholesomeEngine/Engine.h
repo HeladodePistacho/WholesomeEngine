@@ -5,7 +5,10 @@
 #include <memory>
 
 class Module;
-class EventManager;
+
+class ModuleWindow;
+class ModuleRender;
+class ModuleInput;
 
 class Engine
 {
@@ -23,15 +26,16 @@ private:
 	ENGINE_STATUS CurrUpdate();
 	ENGINE_STATUS PostUpdate();
 
-	std::vector<std::shared_ptr<Module>> modules;
+	//Modules
+	std::shared_ptr<ModuleWindow> module_window;
+	std::shared_ptr<ModuleRender> module_render;
+	std::shared_ptr<ModuleInput>  module_input;
+
+	std::vector<std::weak_ptr<Module>> modules;
 	ENGINE_STATUS engine_status{};
 
 	template<typename FUNC>
 	ENGINE_STATUS IterateModules(FUNC);
-
-	//Even System
-	void SubscribeModules();
-	std::shared_ptr<EventManager> event_manager;
 };
 
 #endif // !_ENGINE_H_

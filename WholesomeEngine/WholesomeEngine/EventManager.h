@@ -6,7 +6,6 @@
 #include <map>
 #include <memory>
 
-class WholesomeEvent;
 enum class W_EVENT_TYPE;
 class Module;
 
@@ -21,9 +20,9 @@ public:
 	//void BroadcastInitEvents();
 	//void ThrowEvent(std::shared_ptr<WholesomeEvent> w_event);
 private:
-	std::queue<std::shared_ptr<WholesomeEvent>> init_events;
-	std::queue<std::shared_ptr<WholesomeEvent>> start_events;
-	std::queue<std::shared_ptr<WholesomeEvent>> update_events;
+	
+	
+	
 
 	std::map<W_EVENT_TYPE, std::vector<std::weak_ptr<Module>>> module_subscriptions;
 };

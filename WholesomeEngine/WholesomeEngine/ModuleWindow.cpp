@@ -1,12 +1,12 @@
 #include "ModuleWindow.h"
-#include "EventManager.h"
 #include "WholesomeEvent.h"
+#include <SDL2/SDL_vulkan.h>
 
 
-ModuleWindow::ModuleWindow(std::shared_ptr<EventManager> manager) : Module(manager), window(nullptr, SDL_DestroyWindow)
+ModuleWindow::ModuleWindow() : Module(), window(nullptr, SDL_DestroyWindow)
 {
 	DEBUG::LOG("CREATING MODULE WINDOW", nullptr);
-	subscription_to_events = { W_EVENT_TYPE::WE_SURFACE_CREATION, W_EVENT_TYPE::WE_TEST };
+	
 }
 
 ModuleWindow::~ModuleWindow()
@@ -43,8 +43,20 @@ ENGINE_STATUS ModuleWindow::CleanUp()
 {
 	DEBUG::LOG("...Cleaning Window...", nullptr);
 	window.reset(nullptr);
+
 	SDL_Quit();
 	return ENGINE_STATUS::SUCCESS;
+}
+
+void ModuleWindow::OnEventRecieved(const WESurfaceCreation& event_recieved)
+{
+	if (SDL_Vulkan_CreateSurface(window.get(), event_recieved.vulkan_instance, &c_surface) != SDL_TRUE)
+	{
+		DEBUG::LOG("[ERROR] VULKAN SURFACE CREATION FAILURE: %", SDL_GetError());
+	}
+	else DEBUG::LOG("[SUCCESS] SDL_Vulkan_CreateSurface successfully", nullptr);
+	
+	
 }
 
 

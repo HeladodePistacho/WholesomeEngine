@@ -2,7 +2,7 @@
 #include "VulkanLogicalDevice.h"
 #include <SDL2/SDL_vulkan.h>
 
-ModuleRender::ModuleRender(std::shared_ptr<EventManager> manager) : Module(manager), vulkan_logic_device(std::make_unique<VulkanLogicalDevice>())
+ModuleRender::ModuleRender() : Module(), vulkan_logic_device(std::make_unique<VulkanLogicalDevice>())
 {
 	DEBUG::LOG("CREATING MODULE RENDER", nullptr);
 }
@@ -41,6 +41,8 @@ ENGINE_STATUS ModuleRender::Init()
 		DEBUG::LOG("[ERROR] Creating Logical Device Failure", nullptr);
 		ret = ENGINE_STATUS::FAIL;
 	}
+
+	BroadcastEvent(WESurfaceCreation{ vulkan_instance.GetInstance() });
 
 	return ret;
 }

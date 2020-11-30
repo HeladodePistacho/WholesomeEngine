@@ -2,15 +2,13 @@
 #define _MODULE_RENDER_H_
 
 #include "Module.h"
-#include "EventThrower.h"
+#include "EventListener.h"
 #include "VulkanInstance.h"
 #include "WholesomeEvent.h"
 
 class VulkanLogicalDevice;
 
-struct WESurfaceCreation;
-
-class ModuleRender : public Module, public EventThrower<WESurfaceCreation>
+class ModuleRender : public Module, public EventListener<WESurfaceCreation>
 {
 public:
 	ModuleRender();
@@ -19,9 +17,11 @@ public:
 	ENGINE_STATUS Init();
 	ENGINE_STATUS CleanUp();
 
+	void OnEventRecieved(const WESurfaceCreation& event_recieved) override;
 private:
 	VulkanInstance vulkan_instance;
 	std::unique_ptr<VulkanLogicalDevice> vulkan_logic_device;
+	VkSurfaceKHR surface;
 };
 
 

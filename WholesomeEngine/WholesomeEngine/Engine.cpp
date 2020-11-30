@@ -17,7 +17,7 @@ Engine::Engine() :
 	modules.push_back(module_render);
 
 	//Set modules Event system
-	module_render->AddListener(module_window);
+	module_window->AddListener(module_render);
 }
 
 

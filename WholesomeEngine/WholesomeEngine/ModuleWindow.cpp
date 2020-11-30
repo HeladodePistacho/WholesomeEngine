@@ -36,6 +36,9 @@ ENGINE_STATUS ModuleWindow::Init()
 	}
 	DEBUG::LOG("[SUCCESS] SDL Window Created Successfully", nullptr);
 
+	//Send event to render
+	BroadcastEvent(WESurfaceCreation{ *window });
+
 	return ret;
 }
 
@@ -48,15 +51,15 @@ ENGINE_STATUS ModuleWindow::CleanUp()
 	return ENGINE_STATUS::SUCCESS;
 }
 
-void ModuleWindow::OnEventRecieved(const WESurfaceCreation& event_recieved)
-{
-	if (SDL_Vulkan_CreateSurface(window.get(), event_recieved.vulkan_instance, &c_surface) != SDL_TRUE)
-	{
-		DEBUG::LOG("[ERROR] VULKAN SURFACE CREATION FAILURE: %", SDL_GetError());
-	}
-	else DEBUG::LOG("[SUCCESS] SDL_Vulkan_CreateSurface successfully", nullptr);
-	
-	
-}
+//void ModuleWindow::OnEventRecieved(const WESurfaceCreation& event_recieved)
+//{
+//	if (SDL_Vulkan_CreateSurface(window.get(), event_recieved.vulkan_instance, &c_surface) != SDL_TRUE)
+//	{
+//		DEBUG::LOG("[ERROR] VULKAN SURFACE CREATION FAILURE: %", SDL_GetError());
+//	}
+//	else DEBUG::LOG("[SUCCESS] SDL_Vulkan_CreateSurface successfully", nullptr);
+//	
+//	
+//}
 
 

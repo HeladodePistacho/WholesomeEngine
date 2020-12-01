@@ -37,7 +37,7 @@ ENGINE_STATUS ModuleWindow::Init()
 	DEBUG::LOG("[SUCCESS] SDL Window Created Successfully", nullptr);
 
 	//Send event to render
-	BroadcastEvent(WESurfaceCreation{ *window });
+	BroadcastEvent(WEWindowCreation{ *window });
 
 	return ret;
 }

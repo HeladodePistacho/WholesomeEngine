@@ -9,7 +9,7 @@
 
 struct WESurfaceCreation;
 
-class ModuleWindow : public Module, public EventThrower<WESurfaceCreation>
+class ModuleWindow : public Module, public EventThrower<WEWindowCreation>
 {
 public:
 	ModuleWindow();

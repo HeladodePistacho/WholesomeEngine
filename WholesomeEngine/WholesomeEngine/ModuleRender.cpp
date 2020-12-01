@@ -45,7 +45,7 @@ ENGINE_STATUS ModuleRender::Init()
 	//Optional event will have value if we have recieved the Surface creation event
 	if (event_recieved.has_value())
 	{
-		if (SDL_Vulkan_CreateSurface(const_cast<SDL_Window*>(event_recieved.value().sdl_window), vulkan_instance.GetInstance(), &surface) != SDL_TRUE)
+		if (SDL_Vulkan_CreateSurface(const_cast<SDL_Window*>(event_recieved.value().sdl_window), vulkan_instance.GetInstance(), &vulkan_surface) != SDL_TRUE)
 		{
 			DEBUG::LOG("[ERROR] VULKAN SURFACE CREATION FAILURE: %", SDL_GetError());
 		}
@@ -59,9 +59,16 @@ ENGINE_STATUS ModuleRender::CleanUp()
 {
 	DEBUG::LOG("...Cleaning Render...", nullptr);
 
-	vulkan_logic_device->DestroyDevice();
-	vulkan_instance.DestroyInstance();
+	//Destroy Surface
+	vkDestroySurfaceKHR(vulkan_instance.GetInstance(), vulkan_surface, nullptr);
 
+	//Destroy device
+	vulkan_logic_device->DestroyDevice();
+
+	//Destroy instance
+	vulkan_instance.DestroyInstance();
+	 
+	
 
 	return ENGINE_STATUS::SUCCESS;
 }

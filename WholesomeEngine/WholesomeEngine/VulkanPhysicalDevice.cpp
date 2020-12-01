@@ -85,6 +85,11 @@ uint32 VulkanPhysicalDevice::GetFamilyIndex(PHYSICAL_FAMILY_INDEX index) const
 	return queue.value();
 }
 
+std::vector<uint32> VulkanPhysicalDevice::GetFamilyIndices() const
+{
+	return family_index.GetQueueIndices();
+}
+
 void VulkanPhysicalDevice::PrintInformation() const
 {
 	VkPhysicalDeviceProperties device_properties;
@@ -144,6 +149,7 @@ VkResult VulkanPhysicalDevice::InitDevice(VkSurfaceKHR surface)
 			family_index.SetQueueValue(PHYSICAL_FAMILY_INDEX::GRAPHICS, i);	
 		}
 
+		//Select a family that has presentation support
 		VkBool32 presentation_enable{ VK_FALSE };
 		vkGetPhysicalDeviceSurfaceSupportKHR(physical_device, i, surface, &presentation_enable);
 

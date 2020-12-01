@@ -16,12 +16,13 @@ public:
 	VkResult InitDevice(const VulkanInstance& vulkan_instance);
 	void DestroyDevice();
 
-	const VkDevice& GetDevice() const;
+	const VkDevice GetDevice() const;
 private:
 	VkDevice logic_device;
 
 	//The queue is created with the logic device but we need the handle to interact with it
-	VkQueue	 queue_handle;
+	VkQueue	graphic_handle;
+	VkQueue presentation_handle;
 };
 
 #endif

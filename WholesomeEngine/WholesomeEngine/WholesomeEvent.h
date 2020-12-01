@@ -8,7 +8,7 @@ struct WEWindowCreation
 {
 	WEWindowCreation(const SDL_Window& win) : sdl_window(&win) {}
 	~WEWindowCreation() { sdl_window = nullptr; }
-	const SDL_Window* sdl_window ) nullptr;
+	const SDL_Window* sdl_window = nullptr;
 };
 
 #endif // !_WHOLESOME_EVENT_H_

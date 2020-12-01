@@ -63,6 +63,11 @@ struct PhysicalDeviceQueuesIndices
 			break;
 		}
 	}
+	std::vector<uint32> GetQueueIndices() const
+	{
+		assert(IsValid(), "DEVICE NOT VALID");
+		return std::vector<uint32>{graphics_family.value(), presentation_family.value()};
+	}
 private:
 	inline bool HasValue(const std::optional<uint32>& index_family) const
 	{
@@ -87,6 +92,7 @@ public:
 	//Device Suitability
 	bool IsValid() const;
 	uint32 GetFamilyIndex(PHYSICAL_FAMILY_INDEX) const;
+	std::vector<uint32> GetFamilyIndices() const;
 
 	void PrintInformation() const;
 private:

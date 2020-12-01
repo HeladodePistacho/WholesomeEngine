@@ -87,7 +87,7 @@ ENGINE_STATUS ModuleRender::CleanUp()
 	return ENGINE_STATUS::SUCCESS;
 }
 
-void ModuleRender::OnEventRecieved(const WESurfaceCreation& event_recieved)
+void ModuleRender::OnEventRecieved(const WEWindowCreation& event_recieved)
 {
 	//As I'm not gonna use the info of this event right now I store it
 	this->event_recieved = event_recieved;

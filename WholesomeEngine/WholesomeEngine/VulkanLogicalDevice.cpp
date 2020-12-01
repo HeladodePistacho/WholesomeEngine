@@ -17,7 +17,7 @@ VkResult VulkanLogicalDevice::InitDevice(const VulkanInstance& vulkan_instance)
 {
 	//Start specifying the number of queues for a single queue family
 	float queue_priority{ 1.0f };
-	uint32 family_index = vulkan_instance.GetPhysicalDevice().GetFamilyIndex();
+	uint32 family_index = vulkan_instance.GetPhysicalDevice().GetFamilyIndex(PHYSICAL_FAMILY_INDEX::GRAPHICS);
 
 	VkDeviceQueueCreateInfo queue_info{
 		VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,				//Type of struct
@@ -41,8 +41,8 @@ VkResult VulkanLogicalDevice::InitDevice(const VulkanInstance& vulkan_instance)
 		&queue_info,							//VkDeviceQueueCreateInfo
 		0,										//Enabled layer count -> deprecated
 		nullptr,								//Enabled layer names -> deprecated and ignored
-		0,										//Enabled extension count -> device specific, ignored for now
-		nullptr,								//Enabled extension names -> device specific, ignored for now
+		device_desired_extensions.size(),		//Enabled extension count -> device specific, ignored for now
+		device_desired_extensions.data(),		//Enabled extension names -> device specific, ignored for now
 		&device_features						//VkPhysicalDeviceFeatures
 	};
 

@@ -21,7 +21,7 @@ public:
 private:
 	VulkanInstance vulkan_instance;
 	std::unique_ptr<VulkanLogicalDevice> vulkan_logic_device;
-	VkSurfaceKHR surface;
+	VkSurfaceKHR vulkan_surface;
 };
 
 

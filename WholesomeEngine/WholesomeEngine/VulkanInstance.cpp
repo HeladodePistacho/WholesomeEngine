@@ -1,11 +1,11 @@
 #include "VulkanInstance.h"
-
+#include "SDL2/SDL_vulkan.h"
 
 VulkanInstance::VulkanInstance() : instance(std::make_unique<VkInstance>()), current_gpu(VK_NULL_HANDLE)
 {
 }
 
-VkResult VulkanInstance::CreateInstance()
+VkResult VulkanInstance::CreateInstance(const SDL_Window* window)
 {
 	VkApplicationInfo application_info{
 		VkStructureType::VK_STRUCTURE_TYPE_APPLICATION_INFO, //StructureType
@@ -19,6 +19,12 @@ VkResult VulkanInstance::CreateInstance()
 
 	const char* extensions[1] = { "VK_KHR_win32_surface" };
 
+	uint32 num_extensions;
+	SDL_Vulkan_GetInstanceExtensions(const_cast<SDL_Window*>(window), &num_extensions, nullptr);
+	std::vector<const char*> sdl_extensions{ num_extensions };
+	SDL_Vulkan_GetInstanceExtensions(const_cast<SDL_Window*>(window), &num_extensions, sdl_extensions.data());
+
+
 	VkInstanceCreateInfo instance_info{
 		VkStructureType::VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO, //StructureType
 		nullptr,												 //Next pointer
@@ -26,8 +32,8 @@ VkResult VulkanInstance::CreateInstance()
 		&application_info,										 //Application info pointer
 		0,														 //Layer Count		 ]
 		nullptr,												 //Layer Names       ]---->Not using Layers nor extensions de momento                 
-		1,														 //Extension Count	 ]
-		extensions												 //Extension Names   ]
+		num_extensions,											 //Extension Count	 ]
+		sdl_extensions.data()									 //Extension Names   ]
 	};
 
 	auto result = vkCreateInstance(&instance_info, nullptr, instance.get());
@@ -50,7 +56,27 @@ VkInstance VulkanInstance::GetInstance() const
 	return (*instance);
 }
 
-VkResult VulkanInstance::SelectPhysicalDevice()
+VkResult VulkanInstance::SelectPhysicalDevice(VkSurfaceKHR surface)
+{
+	VkResult ret{ VkResult::VK_SUCCESS };
+
+	for (auto& device : gpus)
+	{
+		device.InitDevice(surface);
+
+		if (device.IsValid())
+		{
+			current_gpu = device;
+			DEBUG::LOG("Using GPU: ", nullptr);
+			current_gpu.PrintInformation();
+			break;
+		}
+	}
+	
+	return ret;
+}
+
+VkResult VulkanInstance::GetPhysicalDevices()
 {
 	uint32 device_count = 0;
 	VkResult ret = VkResult::VK_SUCCESS;
@@ -85,19 +111,6 @@ VkResult VulkanInstance::SelectPhysicalDevice()
 		gpus.push_back(device);
 	}
 
-	for (auto& device : gpus)
-	{
-		device.InitDevice();
-
-		if (device.IsValid())
-		{
-			current_gpu = device;
-			DEBUG::LOG("Using GPU: ", nullptr);
-			current_gpu.PrintInformation();
-			break;
-		}
-	}
-	
 	return ret;
 }
 

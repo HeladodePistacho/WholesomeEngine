@@ -4,6 +4,8 @@
 #include <memory>
 #include "VulkanPhysicalDevice.h"
 
+class SDL_Window;
+
 class VulkanInstance
 {
 private:
@@ -16,12 +18,13 @@ public:
 	VulkanInstance(const VulkanInstance&) = delete;
 	
 	//Instance functions
-	VkResult CreateInstance();
+	VkResult CreateInstance(const SDL_Window*);
 	void DestroyInstance();
 	VkInstance GetInstance() const;
 
 	//Devices
-	VkResult SelectPhysicalDevice();
+	VkResult GetPhysicalDevices();
+	VkResult SelectPhysicalDevice(VkSurfaceKHR);
 	void PrintDeviceInformation(uint8 index) const;
 	const VulkanPhysicalDevice& GetPhysicalDevice() const;
 };
